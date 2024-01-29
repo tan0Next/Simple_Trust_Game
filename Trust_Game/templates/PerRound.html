@@ -1,0 +1,17 @@
+{{ extends 'global/Page.html' }}
+{{ block title }}Result So Far{{ endblock }}
+
+{{ block content }}
+
+<ul>
+    {% for player in group.get_players %}
+    <p>
+        Player {{ player.Name }}:
+        {{ player.endowment }} points
+    </p>
+    {% endfor %}
+</ul>
+
+{{ next_button }}
+
+{{ endblock }}

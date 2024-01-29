@@ -1,0 +1,25 @@
+{{ extends 'global/Page.html' }}
+{{ block title }}Final Result{{ endblock }}
+
+{{ block content }}
+
+<ul>
+    {% for player in group.get_players %}
+    <p>
+        Player {{ player.Name }}:
+        Payoff: {{ player.payoff }} points,
+        Total Earning: {{  player.finalPayoff  }} Tk,
+
+        Reputation: {{  player.avgReputation  }}.
+    </p>
+    {% endfor %}
+    <p>Aggregate Group Trust Rating for this game: {{  group.greputation  }}</p>
+    <p>Rank:</p>
+    {% for g in groups %}
+    <p>
+        {{  g.id_in_subsession  }}
+    </p>
+    {% endfor %}
+</ul>
+
+{{ endblock }}
