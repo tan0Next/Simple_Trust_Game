@@ -1,0 +1,34 @@
+{{ extends 'global/Page.html' }}
+{{ block title }}Please Read{{ endblock }}
+
+{{ block content }}
+<head>
+    <style>
+        img{
+            display: block;
+            margin: auto;
+        }
+        body{
+            background-image: url("{%static 'background.jpg' %}");
+        }
+        p{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <p></p>
+    <img src="{{ static 'disclaimer.png' }}"/>
+    <p></p>
+    <p>We hereby declare that the data collected during this experiment will be used solely for research purposes. 
+        Any information obtained from participants will be treated with utmost confidentiality and will only be accessed by authorized personnel involved in the study.</p>
+    <p></p>
+    <p>The data collected will be used to analyze various aspects of human behavior patterns and decision-making within the context of the experiment. 
+        It will contribute to academic research and may be used for publications, presentations, or educational purposes.</p>
+    <p></p>
+    <p>Participants' identities and personal information will remain strictly confidential and will not be disclosed to any third parties.
+         Furthermore, data will be anonymized and combined to safeguard the privacy of individual participants.</p>
+</body>
+{{ next_button }}
+
+{{ endblock }}

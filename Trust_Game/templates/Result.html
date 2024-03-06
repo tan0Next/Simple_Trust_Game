@@ -2,6 +2,17 @@
 {{ block title }}Result{{ endblock }}
 
 {{ block content }}
+<head>
+    <style>
+        body{
+            background-image: url("{%static 'background.jpg' %}");
+        }
+        p{
+            color: white;
+        }
+    </style>
+</head>
+<body>
 
 <ul>
     {% for player in group.get_players %}
@@ -16,5 +27,5 @@
 </ul>
 
 {{ next_button }}
-
+</body>
 {{ endblock }}

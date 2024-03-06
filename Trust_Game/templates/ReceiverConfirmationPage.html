@@ -1,5 +1,5 @@
 {{ extends 'global/Page.html' }}
-{{ block title }}Participant{{ endblock }}
+{{ block title }}Sending amount{{ endblock }}
 
 {{ block content }}
 <head>
@@ -13,11 +13,7 @@
     </style>
 </head>
 <body>
-<p>Your Group Number is {{player.group.id_in_subsession}}</p>
-
-<p>This page is optional</p>
-
-{{ formfields }}
+<p>You have sent {{  player.sent  }} points</p>
 
 {{ next_button }}
 </body>

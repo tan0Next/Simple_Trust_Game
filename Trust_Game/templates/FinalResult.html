@@ -1,9 +1,32 @@
 {{ extends 'global/Page.html' }}
-{{ block title }}Final Result{{ endblock }}
 
 {{ block content }}
+<head>
+    <style>
+        body {
+            background-image: url("{%static 'background.jpg' %}");
+        }
+        .container {
+            display: flex;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        p{
+            color: white;
+        }
+    </style>
+</head>
+<body>
 
 <ul>
+    <h1>Final Result</h1>
     {% for player in group.get_players %}
     <p>
         Player {{ player.Name }}:
@@ -14,12 +37,28 @@
     </p>
     {% endfor %}
     <p>Aggregate Group Trust Rating for this game: {{  group.greputation  }}</p>
-    <p>Rank:</p>
-    {% for g in groups %}
-    <p>
-        {{  g.id_in_subsession  }}
-    </p>
-    {% endfor %}
+    <div class="container">
+        <div>
+            <table border="1">
+                <tr><th>Rank</th></tr>
+                {% for r in ranks %}
+                <tr>
+                <td>{{  r  }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div>
+            <table border="1">
+                <tr><th>Group Number</th></tr>
+                {% for g in groups %}
+                <tr>
+                <td>{{  g.id_in_subsession  }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
 </ul>
-
+</body>
 {{ endblock }}

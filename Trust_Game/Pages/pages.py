@@ -4,6 +4,12 @@ import random
 from ..models import *
 from .waitpages import *
 
+class Disclaimer(Page):
+    template_name = "Disclaimer.html"
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 1
+    
 class PariticipantInfoPage(Page):
     form_model = 'player'
     form_fields = ['Name', 'Paticipant_Id','Age','Gender','Education']
@@ -24,6 +30,9 @@ class Retreiver(Page):
         if (player.id_in_group == 1 and player.round_number %2 != 0):
             player.group.n = random.randint(1,4)
             player.endowment = C.X*player.group.n
+        elif (player.id_in_group == 2 and player.round_number %2 == 0):
+            player.group.n = random.randint(1,4)
+            player.endowment = C.X*player.group.n
         if player.round_number > 1:
             prev_player = player.in_round(player.round_number - 1)
             player.Name = prev_player.Name
@@ -34,11 +43,15 @@ class Retreiver(Page):
             player.reputation = prev_player.reputation
             player.avgReputation = prev_player.avgReputation
             player.skipcounter = prev_player.skipcounter
-            if player.round_number % 2 == 0:
-                player.endowment = prev_player.endowment
-                player.payoff = prev_player.payoff
-            else:
-                player.payoff = cu(prev_player.endowment)
+            player.payoff = prev_player.payoff
+            player.payoff += cu(prev_player.endowment)
+
+            # For players playing with their remainder of points in even number of rounds
+            # if player.round_number % 2 == 0:
+            #     player.endowment = prev_player.endowment
+            #     player.payoff = prev_player.payoff
+            # else:
+            #     player.payoff = cu(prev_player.endowment)
 
 
 class RateOfReturn(Page):
@@ -72,6 +85,15 @@ class SenderChoicePage(Page):
                 return player.id_in_group == 2
             else:
                 player.group.greputation = p2.avgReputation
+
+class SenderConfirmationPage(Page):
+    template_name = 'SenderConfirmationPage.html'
+    @staticmethod
+    def is_displayed(player: Player):
+        if player.round_number %2 != 0:
+            return player.id_in_group == 1
+        else:
+            return player.id_in_group == 2
 
 
 class ReceiverEndowment(Page):
@@ -118,6 +140,16 @@ class ReceiverChoicePage(Page):
             p1 = player.group.get_player_by_id(1)
             if p1.skipflag == False:
                 return player.id_in_group == 1
+            
+            
+class ReceiverConfirmationPage(Page):
+    template_name = 'ReceiverConfirmationPage.html'
+    @staticmethod
+    def is_displayed(player: Player):
+        if player.round_number %2 != 0:
+            return player.id_in_group == 2
+        else:
+            return player.id_in_group == 1
             
 
 class SenderEndowment(Page):
@@ -172,9 +204,14 @@ class FinalResult(Page):
     def vars_for_template(player: Player):
         groups = player.subsession.get_groups()
         sortedGroups = sorted(groups, key=lambda group: group.greputation, reverse=True)
+        number_of_groups = len(sortedGroups)
+        rank = []
+        for i in range(1,number_of_groups+1):
+            rank.append(i)
         return {
             "groups": sortedGroups,
+            "ranks": rank
         }
 
-page_sequence = [PariticipantInfoPage, Retreiver, RateOfReturn, SenderChoicePage, Waiting1, ReceiverEndowment, ReceiverChoicePage, 
-                 Waiting2, SenderEndowment, PerRound, Arrival, Result_At_Middle, Result, Arrival2, FinalResult]
+page_sequence = [Disclaimer,PariticipantInfoPage, Retreiver, RateOfReturn, SenderChoicePage, Waiting1, SenderConfirmationPage, ReceiverEndowment, ReceiverChoicePage, 
+                 Waiting2, ReceiverConfirmationPage, SenderEndowment, PerRound, Arrival, Result_At_Middle, Result, Arrival2, FinalResult]

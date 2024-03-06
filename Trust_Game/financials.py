@@ -37,18 +37,18 @@ def calculate(subsession: Subsession):
         groups = subsession.get_groups()
         highest_payoff_group = max(groups, key=lambda group: group.greputation)
         ph1, ph2 = highest_payoff_group.get_players()
-        ph1.payoff += 2000
-        ph2.payoff += 2000
+        ph1.payoff *= 2
+        ph2.payoff *= 2
         lowest_payoff_group = min(groups, key=lambda group: group.greputation)
         pl1, pl2 = lowest_payoff_group.get_players()
         if pl1.avgReputation < pl2.avgReputation:
-            pl1.payoff -= 1000
+            pl1.payoff *= 0.25
         else:
-            pl2.payoff -= 1000
+            pl2.payoff *= 0.25
         for g in groups:
             for p in g.get_players():
-                # p.payoff = p.payoff.to_real_world_currency(p.session)
-                # p.payoff = p.payoff_plus_participation_fee()
+                #p.payoff = p.payoff.to_real_world_currency(p.session)
+                #p.payoff = p.payoff_plus_participation_fee()
                 p.finalPayoff += p.payoff
                 p.finalPayoff = p.finalPayoff * 0.01
     return 

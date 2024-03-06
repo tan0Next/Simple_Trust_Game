@@ -2,10 +2,21 @@
 {{ block title }}Rate Of Return{{ endblock }}
 
 {{ block content }}
+<head>
+    <style>
+        body{
+            background-image: url("{%static 'background.jpg' %}");
+        }
+        p{
+            color: white;
+        }
+    </style>
+</head>
+<body>
 <p>You have {{  player.endowment  }} points</p>
 
 <p> The rate of return is 3, the amount you're sending your partner will be multiplied by 3</p>
 
 {{ next_button }}
-
+</body>
 {{ endblock }}

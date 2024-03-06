@@ -2,8 +2,19 @@
 {{ block title }}Amount received{{ endblock }}
 
 {{ block content }}
+<head>
+    <style>
+        body{
+            background-image: url("{%static 'background.jpg' %}");
+        }
+        p{
+            color: white;
+        }
+    </style>
+</head>
+<body>
 <p>You have received {{  endowment  }} points</p>
 
 {{ next_button }}
-
+</body>
 {{ endblock }}

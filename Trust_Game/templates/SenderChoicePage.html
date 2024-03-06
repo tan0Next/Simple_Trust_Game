@@ -2,9 +2,20 @@
 {{ block title }}Choice{{ endblock }}
 
 {{ block content }}
-
+<head>
+    <style>
+        body{
+            background-image: url("{%static 'background.jpg' %}");
+        }
+        p{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<p>
 {{ formfields }}
-
+</p>
 {{ next_button }}
-
+</body>
 {{ endblock }}

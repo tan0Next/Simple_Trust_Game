@@ -1,11 +1,11 @@
 {{ extends 'global/Page.html' }}
-{{ block title }}Choice{{ endblock }}
+{{ block title }}Sending amount{{ endblock }}
 
 {{ block content }}
 <head>
     <style>
         body{
-            background-image: url("{%static 'background.jpg' %}");
+            background-image: url("{% static 'background.jpg' %}");
         }
         p{
             color: white;
@@ -13,9 +13,9 @@
     </style>
 </head>
 <body>
-<p>
-{{ formfields }}
-</p>
+<p>You have sent {{  player.sent  }} points</p>
+
+
 {{ next_button }}
 </body>
 {{ endblock }}
