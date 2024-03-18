@@ -18,7 +18,7 @@
     {% for player in group.get_players %}
     <p>
         Player {{ player.Name }}:
-        Payoff: {{ player.payoff }} points,
+        Payoff: {{ player.participant.payoff }},
 
         Reputation: {{  player.avgReputation  }}.
     </p>

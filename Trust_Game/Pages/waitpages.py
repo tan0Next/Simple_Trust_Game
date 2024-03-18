@@ -11,10 +11,8 @@ class Waiting1(WaitPage):
         if group.round_number %2 != 0:
             sender_transaction(p1,p2)
         else:
-            if p2.skipflag == False:
-                sender_transaction(p2,p1)
-            else:
-                pass
+            sender_transaction(p2,p1)
+
 
 class Waiting2(WaitPage):
     def after_all_players_arrive(group: Group):
@@ -32,11 +30,19 @@ class Waiting2(WaitPage):
             else:
                 group.greputation += p1.avgReputation
 
+
 class Arrival(WaitPage):
     @staticmethod
     def after_all_players_arrive(group: Group):
         return 
 
+
+class ArrivalforallGroupsAtMiddle(WaitPage):
+    wait_for_all_groups = True
+    @staticmethod
+    def is_displayed(self):
+        return self.subsession.round_number == 2
+    
 
 class Arrival2(WaitPage):
     wait_for_all_groups = True

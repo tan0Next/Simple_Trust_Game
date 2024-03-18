@@ -1,54 +1,44 @@
 from .models import *
 
 def sender_transaction(sender,receiver):
-    if (sender.trust_level > 0 and sender.trust_level <= 100):
         sender.sent = (sender.endowment * (sender.trust_level/100))
-        sender.endowment -= sender.sent
-        sender.endowment = round(sender.endowment, 2)
+        sender.payoff = sender.endowment - sender.sent
+        sender.payoff = round(sender.payoff, 2)
         receiver.endowment += (sender.sent * C.K)
         receiver.endowment = round(receiver.endowment, 2)
         sender.reputation += (sender.trust_level/100)
         sender.avgReputation = (sender.reputation/(sender.round_number-sender.skipcounter))
         sender.avgReputation = round(sender.avgReputation, 2)
         sender.group.greputation = sender.avgReputation
-    else:
-        sender.avgReputation = (sender.reputation/(sender.round_number-sender.skipcounter))
-        sender.avgReputation = round(sender.avgReputation, 2)
-        sender.group.greputation = sender.avgReputation
+        if receiver.endowment == 0:
+                receiver.skipcounter += 1
+                receiver.skipflag = True
+
 
 def receiver_transaction(sender,receiver):
-    if (receiver.trust_level > 0 and receiver.trust_level <= 100):
         receiver.sent = receiver.endowment * (receiver.trust_level/100)
-        sender.endowment += receiver.sent
-        sender.endowment = round(sender.endowment, 2) 
-        receiver.endowment -= receiver.sent
-        receiver.endowment = round(receiver.endowment, 2)
+        sender.payoff += receiver.sent
+        sender.payoff = round(sender.payoff, 2)
+        receiver.payoff = receiver.endowment - receiver.sent 
+        receiver.payoff = round(receiver.payoff, 2)
         receiver.reputation += (receiver.trust_level/100)
         receiver.avgReputation = (receiver.reputation/(receiver.round_number-receiver.skipcounter))
         receiver.avgReputation = round(receiver.avgReputation, 2)
         receiver.group.greputation += receiver.avgReputation
-    else:
-        receiver.avgReputation = (receiver.reputation/(receiver.round_number-receiver.skipcounter))
-        receiver.avgReputation = round(receiver.avgReputation, 2)
-        receiver.group.greputation += receiver.avgReputation
+        receiver.group.greputation = round(receiver.group.greputation, 2)
+
 
 def calculate(subsession: Subsession):
     if subsession.round_number == 4:
         groups = subsession.get_groups()
         highest_payoff_group = max(groups, key=lambda group: group.greputation)
         ph1, ph2 = highest_payoff_group.get_players()
-        ph1.payoff *= 2
-        ph2.payoff *= 2
+        ph1.participant.payoff *= 2
+        ph2.participant.payoff *= 2
         lowest_payoff_group = min(groups, key=lambda group: group.greputation)
         pl1, pl2 = lowest_payoff_group.get_players()
         if pl1.avgReputation < pl2.avgReputation:
-            pl1.payoff *= 0.25
+            pl1.participant.payoff *= 0.25
         else:
-            pl2.payoff *= 0.25
-        for g in groups:
-            for p in g.get_players():
-                #p.payoff = p.payoff.to_real_world_currency(p.session)
-                #p.payoff = p.payoff_plus_participation_fee()
-                p.finalPayoff += p.payoff
-                p.finalPayoff = p.finalPayoff * 0.01
+            pl2.participant.payoff *= 0.25
     return 

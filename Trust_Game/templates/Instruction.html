@@ -1,0 +1,150 @@
+{{ extends 'global/Page.html' }}
+
+{{ block content }}
+
+<head>
+    <style>
+        img {
+            display: block;
+            margin: auto;
+        }
+
+        body {
+            background-image: url("{%static 'background.jpg' %}");
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+            color: lightgray;
+        }
+
+        p {
+            color: white;
+        }
+
+        h4 {
+            color: lightgray;
+        }
+
+        .scroll {
+            display: block;
+            border: 0px solid red;
+            padding: 5px;
+            margin-top: 5px;
+            width: 100%;
+            height: 650px;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Instruction Sheet</h1>
+    <h2>Welcome to the <b>GAME OF TRUST</b></h2>
+    <div class="scroll">
+        <p></p>
+        <p>This experiment aims to study behavioral patterns of trust behavior in virtual economic
+            environments. Your valuable participation will contribute to advancing our understanding of
+            behavioral patterns of human trust behavior in such settings.</p>
+        <p></p>
+        <p>If you have questions or need help, please raise your hand, and an experimenter will assist you.
+            Please remain silent and courteous during the game, basing your decisions on your judgment. Kindly
+            review and follow the instructions provided. We appreciate your cooperation.</p>
+        <h4><b>Game Rationale:</b></h4>
+        <p></p>
+        <p>The game is based on a simple question,</p>
+        <h2><b>“DO YOU TRUST YOUR ANONYMOUS PARTNER?”</b></h2>
+        <p></p>
+        <p>Participants will have the option to decide whether they want to trust a stranger or not with their
+            received endowments. The points earned by participants in the game will be influenced not only by
+            their judgments but also by the mutual trust and reciprocity displayed by their anonymous
+            counterparts.</p>
+        <p></p>
+        <p>The participants can choose between maximizing personal winning versus maximizing overall group
+            winnings. Remember the group that displays the maximum cooperation will be rewarded at the end
+            of the game and the group with the least cooperation will be penalized.</p>
+        <p></p>
+        <h4><b>Show-Up Fee:</b></h4>
+        <p>Every player will minimum receive 200(Two Hundred) Taka, for their valuable participation upon
+            completion of the experiment in addition to their game winnings.</p>
+        <p></p>
+        <h4><b>Consent form and Log in:</b></h4>
+        <P>Participants will sign a consent form for voluntary participation in the research project and receive a
+            6-letter token to log into the game.</P>
+        <p></p>
+        <h4><b>Group and Roles:</b></h4>
+        <p>Groups of two randomly selected participants will alternate between the roles of 'Sender'/'Trustor'
+            and 'Receiver'/'Trustee'. Initially, one member assumes the 'Sender'/'Trustor' role while the other
+            takes the 'Receiver'/'Trustee' role. Roles will reverse in subsequent rounds, ensuring each participant
+            plays both roles. Participants will remain anonymous to their group mates throughout the
+            experiment.</p>
+        <p></p>
+        <h4><b>Rounds and Rankings:</b></h4>
+        <P>1. <b>Round Number:</b> The game will have a total number of 04(Four) rounds.</P>
+        <P>2. <b>Trust Evaluation Stage:</b> The first two rounds, termed the 'Trust Evaluation Stage', will assess
+            reciprocity between players in the group and rank their reputation based on observed data.</P>
+        <P>3. <b>Ranking:</b> After the first two and final four rounds, groups will be ranked based on aggregate
+            trust ratings and published. Each participant can access their trust ratings and earnings, as well as
+            those of their counterparts, to inform their decisions in subsequent rounds.</P>
+        <P>4. <b>Reputation Signal Stage:</b> In the 'Reputation Signal Stage', players make informed decisions
+            based on their prior knowledge of trust levels within their group and their group's standing
+            among all groups.</P>
+        <P></P>
+        <h4><b>Endowment:</b></h4>
+        <P>At the beginning of each round, the 'Sender'/'Trustor' in each group will receive a random number
+            of endowments, which may vary from round to round and between groups. These endowments
+            hold monetary value, so careful consideration is advised when making decisions.</P>
+        <p></p>
+        <h4><b>Multiplication Factor:</b></h4>
+        <P>The amount sent by the 'Trustor'/'Sender' will be multiplied by a fixed factor (known only to the
+            'Trustor') before reaching the 'Trustee'/'Receiver'. When the 'Receiver'/'Trustee' reciprocates, the
+            multiplication factor will be 1.</P>
+        <P>Example: If a Sender decides to reciprocate 500 points from his given 1000 points to his/her
+            counterpart, the receiver/ trustee will get,</P>
+        <P> 500 x 2 =1000 points, when the multiplication factor is 2,</P>
+        <P> 500 x 3 =1500 points, when the multiplication factor is 3 and so on</P>
+        <P></P>
+        <h4><b>Trust Game Rules:</b></h4>
+        <P>1. The 'Sender/Trustor' has the option to trust or not. If they choose not to trust, they input 0. If
+            they choose to trust, they can input a percentage from 1 to 100. Example:</P>
+        <P>If total distrust: 0</P>
+        <P>If 40% trust: 40</P>
+        <P>If Total trust: 100</P>
+        <P></P>
+        <P>2. If the 'Sender/Trustor' does not trust their counterpart, the 'Receiver/Trustee' receives nothing.
+            If the 'Sender/Trustor' trusts their counterpart, the 'Receiver/Trustee' receives the reciprocated
+            amount times the multiplication factor. Example:</P>
+        <p>If the Sender trusts 30%, the Multiplication factor is 2 and the Endowment is 3000, the Receiver
+            will be reciprocated = 0.3 x 2 x 3000 = 1800</p>
+        <P>If the Sender trusts 70%, the Multiplication factor is 3 and the Endowment is 2000, the Receiver
+            will be reciprocated = 0.7 x 3 x 2000 = 4200</P>
+        <P></P>
+        <P>3. Now the 'Receiver/Trustee' must decide whether to trust back. They input 0 if they choose not
+            to trust or a percentage from 1 to 100 if they choose to trust.</P>
+        <P></P>
+        <P>4. In the next round, the role will be reversed between the players in each group and thus the game
+            will continue in all four rounds.</P>
+        <P></P>
+        <h4><b>Reward and Penalty:</b></h4>
+        <P>The team with the highest trust rating will have their game-winning amount doubled for each
+            member as a reward. Conversely, the team with the lowest trust rating will face penalties. In the
+            lowest-trust group, only the member with the lowest trust rating will receive a 75% deduction,
+            resulting in them receiving only 25% of their game-winning amount.</P>
+        <P></P>
+        <h4><b>Cash-out and Payment:</b></h4>
+        <P>At the end of the game, each participant receives a participation fee of 200 takas. Game winnings,
+            adjusted for rewards/penalties, will be converted into a specific percentage of taka and disbursed to
+            participants. Participants submit their tokens, receive payments, and sign the payment sheet.</P>
+
+        <P>If any participant violates the rules of the game, he/she will be excluded from the experiment and
+            will not be paid any fee. If any participant leaves before the experiment is concluded, he/ she will
+            not be paid any fee.</P>
+    </div>
+</body>
+{{ next_button }}
+
+{{ endblock }}

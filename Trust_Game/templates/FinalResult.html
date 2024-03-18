@@ -27,11 +27,12 @@
 
 <ul>
     <h1>Final Result</h1>
+    <p>Group Number: {{  group.id_in_subsession  }}</p>
     {% for player in group.get_players %}
     <p>
         Player {{ player.Name }}:
-        Payoff: {{ player.payoff }} points,
-        Total Earning: {{  player.finalPayoff  }} Tk,
+        Payoff: {{ player.participant.payoff }},
+        Total Earning: {{  player.participant.payoff_plus_participation_fee()  }},
 
         Reputation: {{  player.avgReputation  }}.
     </p>
@@ -54,6 +55,16 @@
                 {% for g in groups %}
                 <tr>
                 <td>{{  g.id_in_subsession  }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div>
+            <table border="1">
+                <tr><th>Reputation</th></tr>
+                {% for g in groups %}
+                <tr>
+                <td>{{  g.greputation  }}</td>
                 </tr>
                 {% endfor %}
             </table>
