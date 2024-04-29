@@ -1,5 +1,5 @@
 from os import environ
-SESSION_CONFIG_DEFAULTS = dict(real_world_currency_per_point=0.01, participation_fee=200)
+SESSION_CONFIG_DEFAULTS = dict(real_world_currency_per_point=0.01, participation_fee=150)
 SESSION_CONFIGS = [dict(name='trust_game_session', num_demo_participants=2, app_sequence=['Trust_Game'])]
 LANGUAGE_CODE = 'en'
 REAL_WORLD_CURRENCY_CODE = 'BDT'
